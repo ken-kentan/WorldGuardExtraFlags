@@ -1,6 +1,7 @@
 package jp.kentan.minecraft.worldguardextraflags;
 
-import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
+import com.sk89q.worldguard.WorldGuard;
+import com.sk89q.worldguard.session.SessionManager;
 import jp.kentan.minecraft.worldguardextraflags.flag.handler.GlideFlag;
 import jp.kentan.minecraft.worldguardextraflags.util.FlagUtil;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -8,22 +9,21 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class WorldGuardExtraFlags extends JavaPlugin {
 
-    private static WorldGuardPlugin sWorldGuardPlugin;
+    private SessionManager sessionManager;
 
     @Override
     public void onLoad() {
-        sWorldGuardPlugin = (WorldGuardPlugin) this.getServer().getPluginManager().getPlugin("WorldGuard");
-
-        sWorldGuardPlugin.getFlagRegistry().register(FlagUtil.GLIDE);
+        WorldGuard.getInstance().getFlagRegistry().register(FlagUtil.GLIDE);
     }
 
     @Override
     public void onEnable() {
-        sWorldGuardPlugin.getSessionManager().registerHandler(GlideFlag.FACTORY, null);
+        sessionManager = WorldGuard.getInstance().getPlatform().getSessionManager();
+        sessionManager.registerHandler(GlideFlag.FACTORY, null);
     }
 
     @Override
     public void onDisable() {
-        sWorldGuardPlugin.getSessionManager().unregisterHandler(GlideFlag.FACTORY);
+        sessionManager.unregisterHandler(GlideFlag.FACTORY);
     }
 }
