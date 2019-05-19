@@ -1,6 +1,6 @@
 name: WorldGuardExtraFlags
 main: jp.kentan.minecraft.worldguardextraflags.WorldGuardExtraFlags
-version: 2.0.0
+version: 2.1.0
 description: Adds more flags to worldguard to help manage your server easily!
 author: ken_kentan
 website: https://minecraft.kentan.jp

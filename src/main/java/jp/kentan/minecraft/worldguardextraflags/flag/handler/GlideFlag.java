@@ -64,7 +64,6 @@ public class GlideFlag extends FlagValueChangeHandler<State> {
 
         if (toSet.queryState(localPlayer, FlagUtil.GLIDE) == State.DENY && player.isGliding()) {
             player.setGliding(false);
-            return false;
         }
 
         return true;
